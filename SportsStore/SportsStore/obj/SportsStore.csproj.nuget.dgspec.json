@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dharla\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj": {}
+    "C:\\Users\\Dharla\\Documents\\Chapter8MVC\\SportsStore\\SportsStore\\SportsStore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dharla\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj": {
+    "C:\\Users\\Dharla\\Documents\\Chapter8MVC\\SportsStore\\SportsStore\\SportsStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dharla\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj",
+        "projectUniqueName": "C:\\Users\\Dharla\\Documents\\Chapter8MVC\\SportsStore\\SportsStore\\SportsStore.csproj",
         "projectName": "SportsStore",
-        "projectPath": "C:\\Users\\Dharla\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj",
+        "projectPath": "C:\\Users\\Dharla\\Documents\\Chapter8MVC\\SportsStore\\SportsStore\\SportsStore.csproj",
         "packagesPath": "C:\\Users\\Dharla\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dharla\\source\\repos\\SportsStore\\SportsStore\\obj\\",
+        "outputPath": "C:\\Users\\Dharla\\Documents\\Chapter8MVC\\SportsStore\\SportsStore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

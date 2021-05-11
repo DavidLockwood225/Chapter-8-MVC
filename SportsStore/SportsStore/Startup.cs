@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using SportsStore.Models;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +19,12 @@ namespace SportsStore
             options.UseSqlServer(
                 Configuration["Data:SportStoreProducts:ConnectionString"]));
             services.AddTransient<IProductRepository, EFProductRepository>();
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IOrderRepository, EFOrderRepository>();
             services.AddMvc();
+            services.AddMemoryCache();
+            services.AddSession();
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -26,16 +32,30 @@ namespace SportsStore
             app.UseDeveloperExceptionPage(); 
             app.UseStatusCodePages(); 
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "pagination", 
-                    template: "Products/Page{productPage}", 
-                    defaults: new { Controller = "Product", action = "List" });
+            routes.MapRoute(
+                name: null,
+                template: "{category}/Page{productPage:int}",
+                defaults: new { controller = "Product", action = "List" });
+
+            routes.MapRoute(
+                name: null,
+                template: "Page {productPage:int}",
+                defaults: new { controller = "Product", action = "List", productPage = 1 });
+
+            routes.MapRoute(
+                name: null,
+                template: "{category}",
+                defaults: new { controller = "Product", action = "List", productPage = 1 });
 
                 routes.MapRoute(
-                    name: "default", 
-                    template: "{controller=Product}/{action=List}/{id?}");
+                    name: null,
+                    template: "",
+                    defaults: new { controller = "Product", action = "List", productPage = 1 });
+
+                routes.MapRoute(name: null, template: "{controller}/{action}/{id?}");
             });
             SeedData.EnsurePopulated(app);
         }
